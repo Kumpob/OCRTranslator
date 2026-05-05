@@ -40,13 +40,13 @@ Reads the translated JSON, erases the original Japanese text (by drawing white r
 
 1. **Clone or download** this repository.
 
-2. **Install dependencies:**
+2. **Install dependencies** using `requirements.txt`:
    ```bash
-   pip install paddleocr paddlepaddle==3.2.2 paddlex opencv-contrib-python pillow requests python-dotenv
+   pip install -r requirements.txt
    ```
    > **Note:** 
-   > 1. `paddleocr` may require additional setup. See the [PaddleOCR documentation](https://github.com/PaddlePaddle/PaddleOCR) for platform-specific instructions.
-   > 2. First time running `PaddleOCRVL` will download model around 2GB in size.
+   > - `paddleocr` may require additional setup. See the [PaddleOCR documentation](https://github.com/PaddlePaddle/PaddleOCR) for platform-specific instructions.
+   > - The first time you run PaddleOCRVL, it will download models (~2GB in size).
 
 3. **Set up environment variables** — create a `.env` file in the project root:
     
