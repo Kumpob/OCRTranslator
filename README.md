@@ -73,7 +73,7 @@ This runs all three steps sequentially on the `images/` directory.
 
 ### Custom directories
 ```bash
-python main.py --input my_images --ocr_output my_output --final_output my_final
+python main.py -i my_images -o my_output -f my_final
 ```
 
 ### Run individual steps
