@@ -43,7 +43,7 @@ Reads the translated JSON, erases the original Japanese text (by drawing white r
    ```
    > **Note:** 
    > 1. `paddleocr` may require additional setup. See the [PaddleOCR documentation](https://github.com/PaddlePaddle/PaddleOCR) for platform-specific instructions.
-   > 2. First time running `PaddleOCRVL` will download around 2GB in size.
+   > 2. First time running `PaddleOCRVL` will download model around 2GB in size.
 
 3. **Set up environment variables** — create a `.env` file in the project root:
     
