@@ -1,6 +1,6 @@
 # OCR Manga Translator
 
-A pipeline for OCR-ing Japanese text from manga/comic images, translating it to English via an LLM API, and overlaying the translated text back onto the images.
+A pipeline for OCR-ing Japanese text from manga/comic images, translating it to English via an AI LLM API, and overlaying the translated text back onto the images.
 
 ## Pipeline Overview
 
