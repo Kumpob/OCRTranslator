@@ -1,0 +1,7 @@
+paddleocr
+paddlepaddle==3.2.2
+paddlex
+opencv-contrib-python
+pillow
+requests
+python-dotenv
