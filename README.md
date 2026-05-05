@@ -1,6 +1,6 @@
 # OCR Translator
 
-A pipeline for OCR-ing Japanese text from manga/comic images, translating it to English via an AI LLM API, and overlaying the translated text back onto the images.
+A pipeline for OCR-ing foriegn (e.g. Japanese, Chinese) text from manga/comic pages or images, translating it to English via an AI LLM API, and overlaying the translated text back onto the images.
 
 ## Pipeline Overview
 
@@ -14,18 +14,19 @@ Input Images (PNG)  →  [1. OCR]  →  JSON Results  →  [2. Translate]  →  
 > Disclaimer: This image shows the text after manual corrections. The OCR failed to detect 1 in 16 and only recognized 6, so I edited it.
 
 ### Step 1: OCR — `run_ocr.py`
-Uses **PaddleOCR** (`PaddleOCRVL`) to detect and extract Japanese text from PNG images. Results are saved as JSON files containing text blocks with bounding box coordinates.
+Uses **PaddleOCR** (`PaddleOCRVL`) to detect and extract Japanese (or any language PaddleOCRVL supports) text from PNG images. Results are saved as JSON files containing text blocks with bounding box coordinates.
 
 ### Step 2: Translate — `translate.py`
-Sends extracted Japanese text to an LLM API (via OpenRouter) for English translation. Supports:
+Sends extracted text to an LLM API (via OpenRouter) for English translation. Supports:
 - **Conversation history** — maintains context across text blocks within the folder for consistent translations
 - **Dictionary lookup** — applies custom translations from `note.txt` before sending to the LLM
 - **Retry logic** — retries up to 3 times if the translation doesn't start with ASCII characters
 - Change Model to get better result
+- Change the prompt to translate different language
 - Translated results are saved alongside the original JSON as `*_translated.json`
 
 ### Step 3: Draw — `draw.py`
-Reads the translated JSON, erases the original Japanese text (by drawing white rectangles over text blocks), and renders the English translation with:
+Reads the translated JSON, drawing white rectangles over the original text, and renders the English translation with:
 - **Auto-fitting font size** — shrinks text to fit within the original bounding box
 - **Word wrapping** — handles both normal and narrow (vertical text) layouts
 - **Centered text** — horizontally centered within each block
