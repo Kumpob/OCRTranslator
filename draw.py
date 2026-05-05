@@ -6,8 +6,6 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 def load_font(font_size):
-    # Use a Unicode-capable font if possible.
-    # Replace this with the path to a font on your system.
     possible_fonts = [
         "NotoSansSymbols2-Regular.ttf",
         "DejaVuSans.ttf",
@@ -33,7 +31,6 @@ def get_font(text, font_size):
         except:
             pass
 
-    # default good text font
     return ImageFont.truetype("C:/Windows/Fonts/comicz.ttf", font_size)
 
 
@@ -48,13 +45,10 @@ def normalize_text(text):
     for old, new in replacements.items():
         text = text.replace(old, new)
 
-    # IMPORTANT: remove newline characters
     text = text.replace("\n", " ").replace("\r", " ")
 
-    # collapse multiple spaces
     text = " ".join(text.split())
 
-    # uppercase to uppercase for better translation consistency
     text = text.upper()
 
     return text
@@ -108,7 +102,6 @@ def overlay_translated_text(
 
             return lines
 
-        # --- normal word wrapping ---
         words = text.split(" ")
         lines = []
         current = ""
@@ -152,7 +145,7 @@ def overlay_translated_text(
 
     img_h, img_w = img.shape[:2]
 
-    width_ratio = 0.085  # tweak this (0.06–0.1 range works well)
+    width_ratio = 0.085  # tweak this (0.06–0.1)
     narrow_threshold = int(img_w * width_ratio)
 
     for block in data["parsing_res_list"]:
@@ -202,11 +195,10 @@ def overlay_translated_text(
             y = y1 + padding + i * line_height
             if y > y2:
                 break
-            # draw.text((x1 + 2, y), line, font=font, fill=(0, 0, 0))
             bbox = draw.textbbox((0, 0), line, font=font)
             text_width = bbox[2] - bbox[0]
 
-            x = x1 + (box_width - text_width) // 2  # center horizontally
+            x = x1 + (box_width - text_width) // 2
             
             draw.text((x, y), line, font=font, fill=(0, 0, 0))
 
@@ -233,7 +225,5 @@ def run_all_draw(file_dir, image_dir, output_dir):
                 overlay_translated_text(image_path, json_path, output_path)
             else:
                 print(f"Missing image for: {file}")
-
-# run_all_draw("test_output/", "test/png/", "test_final/")
 
 # run_all_draw("output/", "images/", "final/")
