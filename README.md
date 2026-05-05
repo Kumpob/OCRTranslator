@@ -173,3 +173,4 @@ final/               ← Final images with translated text overlaid
 
 - **Image format:** Only PNG images are processed. Use `convert_to_png.py` to convert other formats.
 - **Font:** The draw script uses `C:/Windows/Fonts/comicz.ttf` (Comic Sans Bold-Italics) by default. Edit `get_font()` in `draw.py` to use a different font. Use `checkfont.py` see available fonts.
+- This project depends on PaddleOCR, licensed under the Apache License 2.0.
